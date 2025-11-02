@@ -19,38 +19,36 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode
-}>) {
+}) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body
         className={`${geist.className} font-sans antialiased bg-background text-foreground`}
       >
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-          {/* --- Fixed Navbar --- */}
-          <header className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
+          {/* Fixed Navbar */}
+          <header className="fixed top-0 left-0 right-0 z-50 h-16 border-b border-border bg-background/80 backdrop-blur-md">
             <Navbar />
           </header>
 
-          {/* --- App Layout --- */}
-          <div className="flex pt-16 h-screen overflow-hidden">
-            <SidebarProvider>
-              {/* Sidebar (scrolls independently) */}
-              <aside className="w-64 h-full border-r border-border bg-sidebar text-sidebar-foreground overflow-y-auto">
-                <AppSidebar />
-              </aside>
+          <SidebarProvider>
+            {/* Sidebar below Navbar */}
+            <aside className="fixed left-0 top-16 z-40 h-[calc(100vh-4rem)] w-64 border-r border-border bg-sidebar text-sidebar-foreground">
+              <AppSidebar />
+            </aside>
 
-              {/* Main Content Area */}
-              <main className="flex-1 overflow-y-auto bg-background transition-colors duration-300 p-6 md:p-10">
-                <div className="max-w-4xl mx-auto bg-card text-card-foreground rounded-xl shadow-lg p-8 border border-border">
+            {/* Main Content Area */}
+            <main className="ml-64 mt-16 min-h-[calc(100vh-4rem)] bg-background transition-colors duration-300">
+              <div className="max-w-5xl mx-auto px-6 md:px-10 py-8">
+                <div className="bg-card text-card-foreground rounded-xl shadow-lg border border-border p-8">
                   {children}
                 </div>
-              </main>
-            </SidebarProvider>
-          </div>
+              </div>
+            </main>
+          </SidebarProvider>
         </ThemeProvider>
-
         <Analytics />
       </body>
     </html>
