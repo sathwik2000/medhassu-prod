@@ -88,10 +88,6 @@
   header.navbar {
     @apply fixed top-0 left-0 right-0 z-50 h-16 flex items-center backdrop-blur-md bg-background/80 border-b border-border;
   }
-
-  main {
-    padding-top: 4rem; /* navbar height */
-  }
 }
 
 /* ---------- Components ---------- */
@@ -118,6 +114,7 @@
     mask-composite: exclude;
   }
 
+  /* Sidebar layout */
   .app-sidebar {
     @apply fixed left-0 top-16 h-[calc(100vh-4rem)] w-64
            bg-sidebar text-sidebar-foreground border-r border-sidebar-border overflow-y-auto;
