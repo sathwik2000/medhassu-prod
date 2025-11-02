@@ -1,49 +1,33 @@
-import type React from "react"
-import type { Metadata } from "next"
-import { Geist, Geist_Mono } from "next/font/google"
-import { Analytics } from "@vercel/analytics/next"
-import { AppSidebar } from "@/components/app-sidebar"
-import { Navbar } from "@/components/navbar"
-import { SidebarProvider } from "@/components/ui/sidebar"
-import { ThemeProvider } from "next-themes"
-import "./globals.css"
+import "./globals.css";
+import { Navbar } from "@/components/navbar";
+import { AppSidebar } from "@/components/app-sidebar";
+import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 
-const geist = Geist({ subsets: ["latin"] })
-const geistMono = Geist_Mono({ subsets: ["latin"] })
-
-export const metadata: Metadata = {
-  title: "Medhassu - Learn & Grow",
-  description: "Markdown-driven education platform",
-  generator: "v0.app",
-}
+export const metadata = {
+  title: "Courses Dashboard",
+  description: "Learning platform",
+};
 
 export default function RootLayout({
   children,
-}: Readonly<{ children: React.ReactNode }>) {
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geist.className} font-sans antialiased bg-background text-foreground`}>
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-          {/* Navbar */}
-          <header className="navbar">
-            <Navbar />
-          </header>
-
-          <SidebarProvider>
-            {/* Sidebar (fixed below navbar) */}
-            <aside className="app-sidebar">
-              <AppSidebar />
-            </aside>
-
-            {/* Main Content */}
-            <main className="content-area">
-              <div className="content-card">{children}</div>
-            </main>
-          </SidebarProvider>
-        </ThemeProvider>
-
-        <Analytics />
+      <body className="min-h-screen bg-background text-foreground">
+        <SidebarProvider>
+          <div className="flex h-screen">
+            <AppSidebar />
+            <div className="flex flex-col flex-1 overflow-hidden">
+              <Navbar />
+              <SidebarInset className="flex-1 overflow-y-auto p-6 mt-16">
+                {children}
+              </SidebarInset>
+            </div>
+          </div>
+        </SidebarProvider>
       </body>
     </html>
-  )
+  );
 }
