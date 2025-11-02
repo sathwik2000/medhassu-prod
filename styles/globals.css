@@ -46,7 +46,7 @@
   --sidebar-foreground: oklch(0.9 0.015 264);
 }
 
-/* ---------- Base Layer ---------- */
+/* ---------- Base styles ---------- */
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -89,15 +89,13 @@
     @apply fixed top-0 left-0 right-0 z-50 h-16 flex items-center backdrop-blur-md bg-background/80 border-b border-border;
   }
 
-  /* Global main content offset (below navbar) */
   main {
-    padding-top: 4rem; /* navbar height (16) */
+    padding-top: 4rem; /* navbar height */
   }
 }
 
-/* ---------- Components Layer ---------- */
+/* ---------- Components ---------- */
 @layer components {
-  /* Gradient text styling */
   .gradient-text {
     @apply bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-500
            dark:from-purple-400 dark:via-blue-400 dark:to-cyan-300
@@ -120,26 +118,20 @@
     mask-composite: exclude;
   }
 
-  /* Sidebar layout */
   .app-sidebar {
     @apply fixed left-0 top-16 h-[calc(100vh-4rem)] w-64
            bg-sidebar text-sidebar-foreground border-r border-sidebar-border overflow-y-auto;
   }
 
-  /* Sidebar inner padding */
   .app-sidebar-content {
     @apply pt-3 pb-4 px-3;
   }
 
-  /* Main content area */
   .content-area {
-    @apply ml-64 min-h-screen bg-background text-foreground
-           transition-colors duration-300 p-6 md:p-10;
+    @apply ml-64 mt-16 min-h-[calc(100vh-4rem)] bg-background text-foreground transition-colors duration-300;
   }
 
-  /* Card-style wrapper for Markdown pages */
   .content-card {
-    @apply max-w-4xl mx-auto bg-card text-card-foreground
-           rounded-xl shadow-lg p-8 border border-border;
+    @apply max-w-4xl mx-auto bg-card text-card-foreground rounded-xl shadow-lg p-8 border border-border;
   }
 }
