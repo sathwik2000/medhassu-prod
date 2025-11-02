@@ -34,17 +34,15 @@ export default function RootLayout({
           </header>
 
           <SidebarProvider>
-            {/* Sidebar below Navbar */}
-            <aside className="fixed left-0 top-16 z-40 h-[calc(100vh-4rem)] w-64 border-r border-border bg-sidebar text-sidebar-foreground">
+            {/* Sidebar fixed below Navbar */}
+            <aside className="fixed left-0 top-16 z-40 h-[calc(100vh-4rem)] w-64 border-r border-border bg-sidebar text-sidebar-foreground overflow-y-auto">
               <AppSidebar />
             </aside>
 
             {/* Main Content Area */}
-            <main className="ml-64 mt-16 min-h-[calc(100vh-4rem)] bg-background transition-colors duration-300">
-              <div className="max-w-5xl mx-auto px-6 md:px-10 py-8">
-                <div className="bg-card text-card-foreground rounded-xl shadow-lg border border-border p-8">
-                  {children}
-                </div>
+            <main className="ml-64 mt-16 min-h-[calc(100vh-4rem)] px-6 md:px-10 py-8 bg-background transition-colors duration-300">
+              <div className="max-w-5xl mx-auto bg-card text-card-foreground rounded-xl shadow-lg border border-border p-8">
+                {children}
               </div>
             </main>
           </SidebarProvider>
