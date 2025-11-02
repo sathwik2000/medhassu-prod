@@ -7,4 +7,11 @@ export interface CourseNode {
   children?: CourseNode[]
 }
 
-export const courseConfig: CourseNode[] = []
+export const courseConfig: CourseNode[] = [
+  {
+    id: "web-development-guide",
+    title: "Web Development Complete Guide",
+    description: "Master HTML, CSS, JavaScript, and React with embedded video tutorials and hands-on exercises",
+    readmeFile: "web-development-guide",
+  },
+]
