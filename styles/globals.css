@@ -41,8 +41,9 @@
   }
 
   main {
-    @apply pt-20 px-6 md:px-10;
+    padding-top: 4rem; /* same as navbar height */
   }
+
 }
 
 @layer components {
