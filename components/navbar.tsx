@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { Search, Moon, Sun, BookOpen } from "lucide-react"
+import { Search, Moon, Sun, BookOpen, Menu } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { useFuzzySearch } from "@/hooks/use-fuzzy-search"
@@ -45,7 +45,7 @@ export function Navbar() {
           id: course.id,
           title: course.title,
           type: "course",
-        })),
+        }))
       )
       setIsOpen(true)
     } catch (error) {
@@ -60,22 +60,33 @@ export function Navbar() {
   if (!mounted) return null
 
   return (
-    <nav className="border-b bg-background/95 backdrop-blur-sm sticky top-0 z-40 shadow-sm">
-      <div className="flex items-center justify-between h-16 px-6 max-w-7xl mx-auto">
-        <Link href="/" className="flex items-center gap-3 group transition-all duration-300 hover:scale-105">
-          <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-500 via-blue-500 to-cyan-500 rounded-xl blur-sm opacity-75 group-hover:opacity-100 transition-opacity"></div>
-            <div className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-purple-600 via-blue-600 to-cyan-600 shadow-lg">
-              <BookOpen className="h-5 w-5 text-white" />
-            </div>
-          </div>
-          <span className="font-bold text-2xl bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-600 dark:from-purple-400 dark:via-blue-400 dark:to-cyan-400 bg-clip-text text-transparent">
-            Medhassu
-          </span>
-        </Link>
+    <nav className="navbar fixed top-0 left-0 right-0 z-50 h-16 border-b bg-background/80 backdrop-blur-md shadow-sm flex items-center">
+      <div className="flex items-center justify-between w-full px-6 max-w-7xl mx-auto">
+        {/* --- Left Section: Logo --- */}
+        <div className="flex items-center gap-4">
+          {/* Mobile sidebar toggle (optional future use) */}
+          <Button variant="ghost" size="icon" className="md:hidden">
+            <Menu className="h-5 w-5" />
+          </Button>
 
-        {/* Search */}
-        <div className="flex-1 max-w-md mx-8 relative">
+          <Link
+            href="/"
+            className="flex items-center gap-3 group transition-all duration-300 hover:scale-105"
+          >
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-500 via-blue-500 to-cyan-500 rounded-xl blur-sm opacity-75 group-hover:opacity-100 transition-opacity"></div>
+              <div className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-purple-600 via-blue-600 to-cyan-600 shadow-lg">
+                <BookOpen className="h-5 w-5 text-white" />
+              </div>
+            </div>
+            <span className="font-bold text-2xl bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-600 dark:from-purple-400 dark:via-blue-400 dark:to-cyan-400 bg-clip-text text-transparent">
+              Medhassu
+            </span>
+          </Link>
+        </div>
+
+        {/* --- Center Section: Search --- */}
+        <div className="flex-1 max-w-md mx-6 relative hidden md:block">
           <div className="relative group">
             <Search className="absolute left-3 top-3.5 h-4 w-4 text-muted-foreground group-focus-within:text-purple-500 transition-colors pointer-events-none" />
             <Input
@@ -88,7 +99,7 @@ export function Navbar() {
             />
           </div>
 
-          {/* Search results dropdown */}
+          {/* Dropdown results */}
           {isOpen && results.length > 0 && (
             <div className="absolute top-full left-0 right-0 mt-2 bg-background border rounded-xl shadow-2xl z-50 max-h-96 overflow-y-auto backdrop-blur-xl bg-background/95">
               {results.map((result, index) => (
@@ -105,7 +116,9 @@ export function Navbar() {
                     <div className="flex h-6 w-6 items-center justify-center rounded-md bg-gradient-to-br from-purple-500 to-blue-500 text-white text-xs font-bold">
                       {index + 1}
                     </div>
-                    <span className="group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors font-medium">{result.title}</span>
+                    <span className="group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors font-medium">
+                      {result.title}
+                    </span>
                   </div>
                 </Link>
               ))}
@@ -119,6 +132,7 @@ export function Navbar() {
           )}
         </div>
 
+        {/* --- Right Section: Theme Toggle --- */}
         <div className="flex items-center gap-4">
           <Button
             variant="ghost"
@@ -127,7 +141,7 @@ export function Navbar() {
             className="rounded-full"
             title={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
           >
-            {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+            {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
           </Button>
         </div>
       </div>
