@@ -8,8 +8,8 @@ import { SidebarProvider } from "@/components/ui/sidebar"
 import { ThemeProvider } from "next-themes"
 import "./globals.css"
 
-const _geist = Geist({ subsets: ["latin"] })
-const _geistMono = Geist_Mono({ subsets: ["latin"] })
+const geist = Geist({ subsets: ["latin"] })
+const geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "Medhassu - Learn & Grow",
@@ -19,31 +19,27 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${_geist.className} font-sans antialiased bg-background text-foreground`}
+        className={`${geist.className} font-sans antialiased bg-background text-foreground`}
       >
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-          {/* Navbar (fixed) */}
-          <header className="fixed top-0 left-0 right-0 z-50 h-16 border-b border-border bg-background/80 backdrop-blur-md">
+          {/* Fixed Navbar */}
+          <header className="navbar">
             <Navbar />
           </header>
 
           <SidebarProvider>
-            {/* Sidebar (fixed below navbar) */}
-            <aside className="fixed top-16 left-0 h-[calc(100vh-4rem)] w-64 border-r border-border bg-sidebar text-sidebar-foreground z-40 overflow-y-auto">
+            {/* Fixed Sidebar below Navbar */}
+            <aside className="app-sidebar">
               <AppSidebar />
             </aside>
 
             {/* Main Content */}
-            <main className="ml-64 mt-16 min-h-[calc(100vh-4rem)] p-6 md:p-10 bg-background transition-colors duration-300">
-              <div className="max-w-4xl mx-auto bg-card text-card-foreground rounded-xl shadow-lg p-8 border border-border">
-                {children}
-              </div>
+            <main className="content-area">
+              <div className="content-card">{children}</div>
             </main>
           </SidebarProvider>
         </ThemeProvider>
