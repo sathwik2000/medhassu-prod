@@ -1,52 +1,10 @@
-@import 'tailwindcss';
-@import 'tw-animate-css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-/* ---------- Theme registration for Tailwind v4 ---------- */
-@theme {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-border: var(--border);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-ring: var(--ring);
-}
-
-/* ---------- Light mode defaults ---------- */
-:root {
-  --background: oklch(0.99 0.005 264);
-  --foreground: oklch(0.15 0.02 264);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.15 0.02 264);
-  --primary: oklch(0.55 0.22 264);
-  --primary-foreground: oklch(0.99 0 0);
-  --border: oklch(0.9 0.01 264);
-  --ring: oklch(0.55 0.22 264);
-  --sidebar: oklch(0.98 0.008 264);
-  --sidebar-border: oklch(0.88 0.015 264);
-  --sidebar-foreground: oklch(0.2 0.02 264);
-}
-
-/* ---------- Dark mode overrides ---------- */
-.dark {
-  --background: oklch(0.12 0.015 264);
-  --foreground: oklch(0.95 0.01 264);
-  --card: oklch(0.16 0.02 264);
-  --card-foreground: oklch(0.95 0.01 264);
-  --primary: oklch(0.65 0.24 264);
-  --primary-foreground: oklch(0.99 0 0);
-  --border: oklch(0.25 0.025 264);
-  --ring: oklch(0.65 0.24 264);
-  --sidebar: oklch(0.14 0.018 264);
-  --sidebar-border: oklch(0.24 0.025 264);
-  --sidebar-foreground: oklch(0.9 0.015 264);
-}
-
-/* ---------- Base styles ---------- */
+/* ------------------------------ */
+/* Base Layer — global defaults   */
+/* ------------------------------ */
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -84,20 +42,38 @@
     @apply text-primary hover:text-primary/80 transition-colors;
   }
 
-  /* Navbar */
+  /* ------------------------------ */
+  /* Navbar — fixed at the top      */
+  /* ------------------------------ */
   header.navbar {
-    @apply fixed top-0 left-0 right-0 z-50 h-16 flex items-center backdrop-blur-md bg-background/80 border-b border-border;
+    @apply fixed top-0 left-0 right-0 z-50 h-16 flex items-center border-b border-border bg-background/80 backdrop-blur-md;
+  }
+
+  /* ------------------------------ */
+  /* Ensure page scrolls below nav  */
+  /* ------------------------------ */
+  main {
+    @apply bg-background text-foreground;
+    padding-top: 4rem; /* navbar height */
   }
 }
 
-/* ---------- Components ---------- */
+/* ------------------------------ */
+/* Component Layer — custom UI    */
+/* ------------------------------ */
 @layer components {
+  /* ------------------------------ */
+  /* Gradient text utility          */
+  /* ------------------------------ */
   .gradient-text {
-    @apply bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-500
-           dark:from-purple-400 dark:via-blue-400 dark:to-cyan-300
+    @apply bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-500 
+           dark:from-purple-400 dark:via-blue-400 dark:to-cyan-300 
            bg-clip-text text-transparent;
   }
 
+  /* ------------------------------ */
+  /* Gradient border utility        */
+  /* ------------------------------ */
   .gradient-border {
     position: relative;
   }
@@ -114,21 +90,54 @@
     mask-composite: exclude;
   }
 
-  /* Sidebar layout */
+  /* ------------------------------ */
+  /* Sidebar layout                 */
+  /* ------------------------------ */
   .app-sidebar {
-    @apply fixed left-0 top-16 h-[calc(100vh-4rem)] w-64
-           bg-sidebar text-sidebar-foreground border-r border-sidebar-border overflow-y-auto;
+    @apply fixed left-0 top-16 h-[calc(100vh-4rem)] w-64 
+           border-r border-sidebar-border bg-sidebar 
+           text-sidebar-foreground overflow-y-auto;
   }
 
+  /* Inner sidebar padding */
   .app-sidebar-content {
     @apply pt-3 pb-4 px-3;
   }
 
+  /* ------------------------------ */
+  /* Content layout                 */
+  /* ------------------------------ */
   .content-area {
-    @apply ml-64 mt-16 min-h-[calc(100vh-4rem)] bg-background text-foreground transition-colors duration-300;
+    @apply ml-64 mt-16 min-h-[calc(100vh-4rem)] p-6 md:p-10 
+           bg-background text-foreground transition-colors duration-300;
   }
 
+  /* Markdown / Course content card */
   .content-card {
-    @apply max-w-4xl mx-auto bg-card text-card-foreground rounded-xl shadow-lg p-8 border border-border;
+    @apply max-w-4xl mx-auto bg-card text-card-foreground 
+           rounded-xl shadow-lg p-8 border border-border;
+  }
+
+  /* ------------------------------ */
+  /* Scrollbar styling              */
+  /* ------------------------------ */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-muted/30;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/40 rounded-full hover:bg-muted-foreground/60;
+  }
+
+  /* ------------------------------ */
+  /* Footer text                    */
+  /* ------------------------------ */
+  .footer-text {
+    @apply text-xs text-center text-muted-foreground mt-6 mb-3;
   }
 }
