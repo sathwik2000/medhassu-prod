@@ -1,3 +1,52 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+/* ---------- Theme registration for Tailwind v4 ---------- */
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-ring: var(--ring);
+}
+
+/* ---------- Light mode defaults ---------- */
+:root {
+  --background: oklch(0.99 0.005 264);
+  --foreground: oklch(0.15 0.02 264);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.15 0.02 264);
+  --primary: oklch(0.55 0.22 264);
+  --primary-foreground: oklch(0.99 0 0);
+  --border: oklch(0.9 0.01 264);
+  --ring: oklch(0.55 0.22 264);
+  --sidebar: oklch(0.98 0.008 264);
+  --sidebar-border: oklch(0.88 0.015 264);
+  --sidebar-foreground: oklch(0.2 0.02 264);
+}
+
+/* ---------- Dark mode overrides ---------- */
+.dark {
+  --background: oklch(0.12 0.015 264);
+  --foreground: oklch(0.95 0.01 264);
+  --card: oklch(0.16 0.02 264);
+  --card-foreground: oklch(0.95 0.01 264);
+  --primary: oklch(0.65 0.24 264);
+  --primary-foreground: oklch(0.99 0 0);
+  --border: oklch(0.25 0.025 264);
+  --ring: oklch(0.65 0.24 264);
+  --sidebar: oklch(0.14 0.018 264);
+  --sidebar-border: oklch(0.24 0.025 264);
+  --sidebar-foreground: oklch(0.9 0.015 264);
+}
+
+/* ---------- Base Layer ---------- */
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -46,10 +95,13 @@
   }
 }
 
+/* ---------- Components Layer ---------- */
 @layer components {
   /* Gradient text styling */
   .gradient-text {
-    @apply bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-500 dark:from-purple-400 dark:via-blue-400 dark:to-cyan-300 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-500
+           dark:from-purple-400 dark:via-blue-400 dark:to-cyan-300
+           bg-clip-text text-transparent;
   }
 
   .gradient-border {
@@ -70,21 +122,24 @@
 
   /* Sidebar layout */
   .app-sidebar {
-    @apply fixed left-0 top-16 h-[calc(100vh-4rem)] w-64 bg-sidebar text-sidebar-foreground border-r border-sidebar-border overflow-y-auto;
+    @apply fixed left-0 top-16 h-[calc(100vh-4rem)] w-64
+           bg-sidebar text-sidebar-foreground border-r border-sidebar-border overflow-y-auto;
   }
 
-  /* Sidebar inner padding to avoid navbar overlap */
+  /* Sidebar inner padding */
   .app-sidebar-content {
     @apply pt-3 pb-4 px-3;
   }
 
   /* Main content area */
   .content-area {
-    @apply ml-64 min-h-screen bg-background text-foreground transition-colors duration-300 p-6 md:p-10;
+    @apply ml-64 min-h-screen bg-background text-foreground
+           transition-colors duration-300 p-6 md:p-10;
   }
 
   /* Card-style wrapper for Markdown pages */
   .content-card {
-    @apply max-w-4xl mx-auto bg-card text-card-foreground rounded-xl shadow-lg p-8 border border-border;
+    @apply max-w-4xl mx-auto bg-card text-card-foreground
+           rounded-xl shadow-lg p-8 border border-border;
   }
 }
