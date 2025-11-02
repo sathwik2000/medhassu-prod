@@ -22,17 +22,15 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${geist.className} font-sans antialiased bg-background text-foreground`}
-      >
+      <body className={`${geist.className} font-sans antialiased bg-background text-foreground`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-          {/* Fixed Navbar */}
+          {/* Navbar */}
           <header className="navbar">
             <Navbar />
           </header>
 
           <SidebarProvider>
-            {/* Fixed Sidebar below Navbar */}
+            {/* Sidebar (fixed below navbar) */}
             <aside className="app-sidebar">
               <AppSidebar />
             </aside>
