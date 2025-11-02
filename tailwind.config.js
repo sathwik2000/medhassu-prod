@@ -1,6 +1,5 @@
-import { defineConfig } from "tailwindcss"
-
-export default defineConfig({
+/** @type {import('tailwindcss').Config} */
+module.exports = {
   darkMode: ["class"],
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
@@ -11,4 +10,4 @@ export default defineConfig({
     extend: {},
   },
   plugins: [],
-})
+}
