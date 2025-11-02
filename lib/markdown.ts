@@ -47,13 +47,18 @@ export async function getCourses(): Promise<Course[]> {
 }
 
 export async function parseMarkdown(coursePath: string): Promise<string> {
-  const filePath = path.join(process.cwd(), "md", coursePath, "README.md")
+  let filePath = path.join(process.cwd(), "md", coursePath, "README.md")
 
   try {
     return await readFile(filePath, "utf-8")
   } catch (error) {
-    console.error(`Error loading markdown ${coursePath}:`, error)
-    return "Content not found"
+    const altFilePath = path.join(process.cwd(), "md", `${coursePath}.md`)
+    try {
+      return await readFile(altFilePath, "utf-8")
+    } catch (altError) {
+      console.error(`Error loading markdown ${coursePath}:`, error)
+      return "Content not found"
+    }
   }
 }
 

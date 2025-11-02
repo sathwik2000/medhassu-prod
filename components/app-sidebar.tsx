@@ -73,28 +73,18 @@ export function AppSidebar() {
   return (
     <Sidebar className="border-r border-sidebar-border bg-sidebar">
       <SidebarHeader className="border-b border-sidebar-border px-6 py-4">
-        <Link href="/" className="flex items-center gap-2 hover:opacity-70 transition-opacity">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 to-cyan-500">
-            <BookOpen className="h-4 w-4 text-white" />
-          </div>
-          <p className="font-semibold text-sidebar-foreground">Medhassu</p>
-        </Link>
+        <div className="flex items-center justify-between">
+          <p className="text-xs font-semibold text-sidebar-foreground/60 uppercase tracking-wider">Courses</p>
+          <Badge variant="secondary" className="h-6 px-2 text-xs">
+            {totalCourses}
+          </Badge>
+        </div>
       </SidebarHeader>
 
-      {/* Content */}
       <SidebarContent className="flex flex-col gap-0">
         <div className="flex-1 overflow-hidden flex flex-col">
-          <div className="px-6 py-3">
-            <div className="flex items-center justify-between">
-              <p className="text-xs font-semibold text-sidebar-foreground/60 uppercase tracking-wider">Courses</p>
-              <Badge variant="secondary" className="h-6 px-2 text-xs">
-                {totalCourses}
-              </Badge>
-            </div>
-          </div>
-
           {/* Courses List */}
-          <div className="flex-1 overflow-y-auto px-2">
+          <div className="flex-1 overflow-y-auto px-2 pt-2">
             <SidebarMenu className="gap-1">
               {courseConfig.map((course) => (
                 <CourseItem key={course.id} node={course} />

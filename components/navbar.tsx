@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { Search, Moon, Sun } from "lucide-react"
+import { Search, Moon, Sun, BookOpen } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { useFuzzySearch } from "@/hooks/use-fuzzy-search"
@@ -60,40 +60,53 @@ export function Navbar() {
   if (!mounted) return null
 
   return (
-    <nav className="border-b bg-background/95 backdrop-blur-sm sticky top-0 z-40">
+    <nav className="border-b bg-background/95 backdrop-blur-sm sticky top-0 z-40 shadow-sm">
       <div className="flex items-center justify-between h-16 px-6 max-w-7xl mx-auto">
-        <Link href="/" className="font-bold text-xl hover:opacity-70 transition-opacity">
-          Medhassu
+        <Link href="/" className="flex items-center gap-3 group transition-all duration-300 hover:scale-105">
+          <div className="relative">
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-500 via-blue-500 to-cyan-500 rounded-xl blur-sm opacity-75 group-hover:opacity-100 transition-opacity"></div>
+            <div className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-purple-600 via-blue-600 to-cyan-600 shadow-lg">
+              <BookOpen className="h-5 w-5 text-white" />
+            </div>
+          </div>
+          <span className="font-bold text-2xl bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-600 dark:from-purple-400 dark:via-blue-400 dark:to-cyan-400 bg-clip-text text-transparent">
+            Medhassu
+          </span>
         </Link>
 
         {/* Search */}
         <div className="flex-1 max-w-md mx-8 relative">
-          <div className="relative">
-            <Search className="absolute left-3 top-3.5 h-4 w-4 text-muted-foreground pointer-events-none" />
+          <div className="relative group">
+            <Search className="absolute left-3 top-3.5 h-4 w-4 text-muted-foreground group-focus-within:text-purple-500 transition-colors pointer-events-none" />
             <Input
               placeholder="Search courses..."
               value={searchQuery}
               onChange={(e) => handleSearch(e.target.value)}
               onFocus={() => searchQuery && setIsOpen(true)}
               onBlur={() => setTimeout(() => setIsOpen(false), 200)}
-              className="pl-10 pr-4"
+              className="pl-10 pr-4 border-2 focus-visible:border-purple-500 focus-visible:ring-purple-500/20 transition-all duration-300"
             />
           </div>
 
           {/* Search results dropdown */}
           {isOpen && results.length > 0 && (
-            <div className="absolute top-full left-0 right-0 mt-2 bg-background border rounded-lg shadow-2xl z-50 max-h-96 overflow-y-auto">
-              {results.map((result) => (
+            <div className="absolute top-full left-0 right-0 mt-2 bg-background border rounded-xl shadow-2xl z-50 max-h-96 overflow-y-auto backdrop-blur-xl bg-background/95">
+              {results.map((result, index) => (
                 <Link
                   key={result.id}
                   href={`/courses/${result.id}`}
-                  className="block px-4 py-3 hover:bg-accent first:rounded-t-lg last:rounded-b-lg text-sm border-b last:border-b-0 transition-colors"
+                  className="block px-4 py-3 hover:bg-gradient-to-r hover:from-purple-500/10 hover:to-blue-500/10 first:rounded-t-xl last:rounded-b-xl text-sm border-b last:border-b-0 transition-all duration-200 group"
                   onClick={() => {
                     setSearchQuery("")
                     setIsOpen(false)
                   }}
                 >
-                  {result.title}
+                  <div className="flex items-center gap-2">
+                    <div className="flex h-6 w-6 items-center justify-center rounded-md bg-gradient-to-br from-purple-500 to-blue-500 text-white text-xs font-bold">
+                      {index + 1}
+                    </div>
+                    <span className="group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors font-medium">{result.title}</span>
+                  </div>
                 </Link>
               ))}
             </div>

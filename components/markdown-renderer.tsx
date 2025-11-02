@@ -94,25 +94,25 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
       // Headings
       if (line.startsWith("# ")) {
         elements.push(
-          <h1 key={i} className="text-4xl font-bold mt-6 mb-4">
+          <h1 key={i} className="text-5xl font-bold mt-8 mb-6 bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-600 dark:from-purple-400 dark:via-blue-400 dark:to-cyan-400 bg-clip-text text-transparent">
             {parseColoredText(line.substring(2))}
           </h1>,
         )
       } else if (line.startsWith("## ")) {
         elements.push(
-          <h2 key={i} className="text-3xl font-bold mt-5 mb-3">
+          <h2 key={i} className="text-3xl font-bold mt-8 mb-4 text-foreground/90">
             {parseColoredText(line.substring(3))}
           </h2>,
         )
       } else if (line.startsWith("### ")) {
         elements.push(
-          <h3 key={i} className="text-2xl font-bold mt-4 mb-2">
+          <h3 key={i} className="text-2xl font-semibold mt-6 mb-3 text-foreground/85">
             {parseColoredText(line.substring(4))}
           </h3>,
         )
       } else if (line.startsWith("#### ")) {
         elements.push(
-          <h4 key={i} className="text-xl font-bold mt-3 mb-2">
+          <h4 key={i} className="text-xl font-semibold mt-5 mb-2 text-foreground/80">
             {parseColoredText(line.substring(5))}
           </h4>,
         )
@@ -135,13 +135,13 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
       // Lists
       else if (line.startsWith("- ")) {
         elements.push(
-          <li key={i} className="ml-6 my-1 list-disc">
+          <li key={i} className="ml-6 my-2 list-disc marker:text-purple-500 text-foreground/80 leading-relaxed">
             {parseColoredText(line.substring(2))}
           </li>,
         )
       } else if (line.startsWith("* ")) {
         elements.push(
-          <li key={i} className="ml-6 my-1 list-disc">
+          <li key={i} className="ml-6 my-2 list-disc marker:text-purple-500 text-foreground/80 leading-relaxed">
             {parseColoredText(line.substring(2))}
           </li>,
         )
@@ -151,7 +151,7 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
         elements.push(
           <blockquote
             key={i}
-            className="border-l-4 border-blue-500 pl-4 italic my-3 text-slate-600 dark:text-slate-400"
+            className="border-l-4 border-purple-500 bg-purple-50 dark:bg-purple-950/20 pl-6 py-3 italic my-4 text-foreground/70 rounded-r-lg"
           >
             {parseColoredText(line.substring(2))}
           </blockquote>,
@@ -159,7 +159,7 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
       }
       // Horizontal rule
       else if (line.trim() === "---" || line.trim() === "***") {
-        elements.push(<hr key={i} className="my-6 border-slate-300 dark:border-slate-600" />)
+        elements.push(<hr key={i} className="my-8 border-t-2 border-gradient-to-r from-purple-500 via-blue-500 to-cyan-500 opacity-30" />)
       }
       // Bold and italic
       else if (line.trim()) {
@@ -189,5 +189,5 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
     return elements
   }
 
-  return <article className="max-w-4xl mx-auto p-8 prose-sm dark:prose-invert">{renderMarkdown(content)}</article>
+  return <article className="max-w-4xl mx-auto px-8 py-12 prose-sm dark:prose-invert animate-in fade-in duration-700">{renderMarkdown(content)}</article>
 }
