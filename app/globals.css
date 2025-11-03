@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* ==============================
+   THEME VARIABLES
+   ============================== */
 @layer theme {
   :root {
     --color-background: 0 0% 100%;
@@ -44,6 +47,9 @@
   }
 }
 
+/* ==============================
+   BASE STYLES
+   ============================== */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -57,6 +63,9 @@ body {
   min-height: 100vh;
 }
 
+/* ==============================
+   NAVBAR
+   ============================== */
 header.navbar {
   position: fixed;
   top: 0;
@@ -65,13 +74,47 @@ header.navbar {
   height: 64px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
   background-color: hsl(var(--color-background) / 0.95);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid hsl(var(--color-border));
   z-index: 50;
-  padding: 0 24px;
 }
 
+/* Navbar sections */
+.navbar-left,
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.navbar-search {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.navbar-search input {
+  width: 100%;
+  max-width: 400px;
+  padding: 0.5rem 1rem;
+  border: 1px solid hsl(var(--color-border));
+  border-radius: 0.5rem;
+  background-color: hsl(var(--color-muted) / 0.4);
+  color: hsl(var(--color-foreground));
+  font-size: 0.95rem;
+}
+
+.navbar-search input:focus {
+  outline: 2px solid hsl(var(--color-primary));
+  outline-offset: 2px;
+}
+
+/* ==============================
+   SIDEBAR
+   ============================== */
 aside[data-slot="sidebar"] {
   position: fixed;
   left: 0;
@@ -101,6 +144,9 @@ main {
   }
 }
 
+/* ==============================
+   TYPOGRAPHY
+   ============================== */
 h1 {
   font-size: 2.5rem;
   font-weight: 700;
