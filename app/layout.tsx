@@ -1,3 +1,4 @@
+// app/layout.tsx
 import "./globals.css";
 import { Navbar } from "@/components/navbar";
 import { AppSidebar } from "@/components/app-sidebar";
@@ -26,7 +27,7 @@ export default function RootLayout({
           <Navbar />
 
           <div className="flex">
-            {/* Fixed Sidebar */}
+            {/* Fixed Sidebar below navbar */}
             <aside
               data-slot="sidebar"
               className="fixed top-[64px] left-0 w-64 h-[calc(100vh-64px)] border-r border-[hsl(var(--color-sidebar-border))] bg-[hsl(var(--color-sidebar))] overflow-y-auto z-40"
@@ -34,7 +35,7 @@ export default function RootLayout({
               <AppSidebar />
             </aside>
 
-            {/* Main content area */}
+            {/* Main content area (offset by sidebar and navbar) */}
             <main className="flex-1 ml-64 mt-[64px] min-h-[calc(100vh-64px)] bg-[hsl(var(--color-background))] p-6 md:p-10 transition-colors">
               <div className="max-w-4xl mx-auto bg-[hsl(var(--color-card))] text-[hsl(var(--color-card-foreground))] rounded-xl shadow-lg border border-[hsl(var(--color-border))] p-8">
                 {children}
