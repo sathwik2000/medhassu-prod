@@ -7,7 +7,6 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    // Optional safety net for Vercel & CI:
     "postinstall": "npm install --legacy-peer-deps || true"
   },
   "dependencies": {
@@ -62,20 +61,18 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.16",
-    "@types/node": "^22",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.16",
     "typescript": "^5.6.3"
   },
-  // 👇 Overrides ensure React 19 compatibility for vaul
   "overrides": {
     "vaul/react": "19.2.0",
     "vaul/react-dom": "19.2.0"
   },
-  // 👇 Prevent npm peer dependency errors
   "npmConfig": {
     "legacy-peer-deps": true
   }
