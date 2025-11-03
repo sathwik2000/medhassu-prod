@@ -1,7 +1,8 @@
+/* globals.css */
 @import "tailwindcss";
 
 /* ==============================
-   THEME COLORS
+   THEME VARIABLES (HSL pairs)
    ============================== */
 @layer theme {
   :root {
@@ -9,7 +10,10 @@
     --color-foreground: 222.2 47.4% 11.2%;
     --color-card: 0 0% 100%;
     --color-card-foreground: 222.2 47.4% 11.2%;
-    --color-primary: 234 89% 62%;
+    --color-primary: 222.2 47.4% 11.2%;
+    --color-primary-foreground: 210 40% 98%;
+    --color-secondary: 210 40% 96.1%;
+    --color-muted: 210 40% 96.1%;
     --color-border: 214.3 31.8% 91.4%;
     --color-sidebar: 0 0% 98%;
     --color-sidebar-foreground: 222.2 47.4% 11.2%;
@@ -19,32 +23,27 @@
   .dark {
     --color-background: 222.2 47.4% 11.2%;
     --color-foreground: 210 40% 98%;
-    --color-card: 225 25% 15%;
+    --color-card: 222.2 47.4% 11.2%;
     --color-card-foreground: 210 40% 98%;
-    --color-primary: 216 100% 65%;
-    --color-border: 217.2 32.6% 20%;
-    --color-sidebar: 224 40% 10%;
-    --color-sidebar-foreground: 210 40% 96%;
-    --color-sidebar-border: 224 40% 20%;
+    --color-primary: 210 40% 98%;
+    --color-muted: 217.2 32.6% 17.5%;
+    --color-border: 217.2 32.6% 17.5%;
+    --color-sidebar: 222.2 47.4% 11.2%;
+    --color-sidebar-foreground: 210 40% 98%;
+    --color-sidebar-border: 217.2 32.6% 17.5%;
   }
 }
 
 /* ==============================
-   BASE RESET
+   RESET
    ============================== */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 body {
-  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
-    sans-serif;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   background-color: hsl(var(--color-background));
   color: hsl(var(--color-foreground));
   min-height: 100vh;
-  transition: background-color 0.3s, color 0.3s;
 }
 
 /* ==============================
@@ -58,11 +57,10 @@ header.navbar {
   height: 64px;
   display: flex;
   align-items: center;
-  background-color: hsl(var(--color-background) / 0.9);
-  backdrop-filter: blur(12px);
+  background-color: hsl(var(--color-background) / 0.92);
+  backdrop-filter: blur(10px);
   border-bottom: 1px solid hsl(var(--color-border));
-  z-index: 50;
-  box-shadow: 0 1px 4px hsl(var(--color-border) / 0.4);
+  z-index: 60;
 }
 
 /* ==============================
@@ -72,133 +70,68 @@ aside[data-slot="sidebar"] {
   position: fixed;
   top: 64px;
   left: 0;
-  width: 250px;
+  width: 16rem; /* 256px consistent with your layout */
   height: calc(100vh - 64px);
   background-color: hsl(var(--color-sidebar));
   border-right: 1px solid hsl(var(--color-sidebar-border));
-  z-index: 40;
+  z-index: 50;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 }
 
-.sidebar-inner {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  padding: 1rem 0;
-}
-
-.sidebar-header {
-  padding: 0 1rem 1rem 1rem;
-  border-bottom: 1px solid hsl(var(--color-sidebar-border));
-  margin-bottom: 0.5rem;
-}
-
-.sidebar-nav {
-  flex: 1;
-  padding: 0 0.5rem;
-}
-
+.sidebar-inner { display:flex; flex-direction:column; height:100%; justify-content:space-between; }
+.sidebar-header { padding: 0.75rem 1rem; border-bottom: 1px solid hsl(var(--color-sidebar-border)); }
+.sidebar-nav { padding: 0.5rem 0.5rem; }
 .sidebar-link {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-  font-size: 0.95rem;
-  color: hsl(var(--color-sidebar-foreground));
-  transition: background-color 0.25s, color 0.25s;
+  display:flex; align-items:center; gap:0.6rem; padding:0.5rem 1rem; border-radius:0.5rem;
+  font-size:0.95rem; color:hsl(var(--color-sidebar-foreground)); transition:background-color 0.2s, color 0.2s;
 }
-
 .sidebar-link:hover {
-  background-color: hsl(var(--color-primary) / 0.1);
+  background-color: hsl(var(--color-primary) / 0.06);
   color: hsl(var(--color-primary));
 }
-
-.sidebar-footer {
-  padding: 1rem;
-  border-top: 1px solid hsl(var(--color-sidebar-border));
-}
+.sidebar-footer { padding: 1rem; border-top: 1px solid hsl(var(--color-sidebar-border)); }
 
 /* ==============================
-   MAIN CONTENT
+   MAIN
    ============================== */
 main {
-  margin-left: 250px;
-  margin-top: 64px;
-  padding: 2rem;
-  background-color: hsl(var(--color-background));
+  margin-left: 16rem; /* match sidebar width */
+  margin-top: 64px;    /* match navbar height */
   min-height: calc(100vh - 64px);
+  padding: 1.5rem;
+  background-color: hsl(var(--color-background));
 }
 
+/* inner card wrapper similar to what you had */
 main > div {
-  max-width: 900px;
+  max-width: 60rem;
   margin: 0 auto;
   background-color: hsl(var(--color-card));
   border: 1px solid hsl(var(--color-border));
-  border-radius: 1rem;
-  box-shadow: 0 4px 10px hsl(var(--color-border) / 0.25);
+  border-radius: 0.75rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
   padding: 2rem;
 }
+
+/* ==============================
+   SEARCH DROPDOWN z-index fix
+   ============================== */
+.z-search-dropdown { z-index: 70; }
 
 /* ==============================
    TYPOGRAPHY
    ============================== */
-h1 {
-  font-size: 2.25rem;
-  font-weight: 700;
-  margin-bottom: 1.25rem;
-  background: linear-gradient(to right, #a855f7, #3b82f6, #06b6d4);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
+h1 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 1.25rem; }
+h2 { font-size: clamp(1.25rem, 3vw, 1.875rem); margin-top: 1.5rem; margin-bottom: 0.75rem; }
+p { line-height: 1.7; margin-bottom: 1rem; }
 
-h2 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-}
-
-p {
-  line-height: 1.7;
-  margin-bottom: 1rem;
-}
-
-/* ==============================
-   RESPONSIVE
-   ============================== */
+/* responsive adjustments */
 @media (max-width: 768px) {
-  aside[data-slot="sidebar"] {
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
-  }
-  main {
-    margin-left: 0;
-    padding: 1.25rem;
-  }
+  aside[data-slot="sidebar"] { transform: translateX(-100%); transition: transform 0.25s ease; }
+  main { margin-left: 0; padding: 1rem; }
 }
 
-/* ==============================
-   SEARCH DROPDOWN FIXES
-   ============================== */
-.z-[60] {
-  z-index: 60;
-}
-
-.search-dropdown {
-  animation: fadeIn 0.15s ease-in-out;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-4px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
+/* accessibility focus */
+*:focus-visible { outline: 2px solid hsl(var(--color-primary)); outline-offset: 2px; border-radius: 0.25rem; }
