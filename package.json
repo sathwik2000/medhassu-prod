@@ -68,12 +68,5 @@
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.16",
     "typescript": "^5.6.3"
-  },
-  "overrides": {
-    "vaul/react": "19.2.0",
-    "vaul/react-dom": "19.2.0"
-  },
-  "npmConfig": {
-    "legacy-peer-deps": true
   }
 }
