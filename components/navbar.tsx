@@ -1,3 +1,4 @@
+// components/navbar.tsx
 "use client";
 
 import { useTheme } from "next-themes";
@@ -7,7 +8,7 @@ import { useState, useEffect, useRef } from "react";
 import { useFuzzySearch } from "@/hooks/use-fuzzy-search";
 import Link from "next/link";
 
-// 🧠 Sample data — replace with your real data source
+// sample dataset — replace with your real course source if needed
 const COURSES = [
   { id: "web-development-guide", title: "Web Development Complete Guide", description: "Learn HTML, CSS, JS, and React." },
   { id: "python-basics", title: "Python Basics", description: "A complete introduction to Python programming." },
@@ -30,11 +31,11 @@ export function Navbar() {
       return;
     }
     const found = search(COURSES, query, ["title", "description"]);
-    setResults(found.slice(0, 5));
+    setResults(found.slice(0, 6));
     setShowDropdown(true);
   }, [query, search]);
 
-  // Close dropdown when clicking outside
+  // close dropdown on outside click
   useEffect(() => {
     const handler = (e: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
@@ -58,7 +59,7 @@ export function Navbar() {
           </h1>
         </div>
 
-        {/* Search Bar */}
+        {/* Search */}
         <div ref={dropdownRef} className="relative flex-1 max-w-md mx-6">
           <Search className="absolute left-3 top-3.5 h-4 w-4 text-gray-500 dark:text-gray-400" />
           <Input
@@ -80,10 +81,10 @@ export function Navbar() {
                     setQuery("");
                     setShowDropdown(false);
                   }}
-                  className="block px-4 py-3 hover:bg-[hsl(var(--color-primary))/0.1] transition-colors"
+                  className="block px-4 py-3 hover:bg-[hsl(var(--color-primary))/0.06] transition-colors"
                 >
                   <div className="font-medium">{r.title}</div>
-                  <div className="text-sm text-gray-500 dark:text-gray-400">{r.description}</div>
+                  <div className="text-sm text-muted-foreground dark:text-gray-400">{r.description}</div>
                 </Link>
               ))}
             </div>
@@ -93,7 +94,8 @@ export function Navbar() {
         {/* Theme toggle */}
         <button
           onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-          className="w-10 h-10 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 flex items-center justify-center transition-colors"
+          className="w-10 h-10 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 flex items-center justify-center transition-colors relative"
+          aria-label="Toggle theme"
         >
           <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
           <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
