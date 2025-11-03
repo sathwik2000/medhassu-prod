@@ -132,6 +132,7 @@ main {
   margin-top: 64px;
   min-height: calc(100vh - 64px);
   padding: 24px;
+  background-color: hsl(var(--color-background));
 }
 
 @media (max-width: 768px) {
