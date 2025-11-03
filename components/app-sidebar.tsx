@@ -1,3 +1,4 @@
+// components/app-sidebar.tsx
 "use client";
 
 import Link from "next/link";
@@ -6,25 +7,27 @@ import { BookOpen } from "lucide-react";
 export function AppSidebar() {
   return (
     <aside data-slot="sidebar">
-      <div className="sidebar-inner">
-        <div className="sidebar-header">
-          <div className="flex items-center gap-2">
-            <BookOpen className="w-5 h-5 text-purple-500" />
-            <h2 className="text-sm font-semibold uppercase tracking-wider text-sidebar-foreground/70">
-              Courses
-            </h2>
+      <div className="sidebar-inner h-full flex flex-col justify-between">
+        <div>
+          <div className="sidebar-header">
+            <div className="flex items-center gap-2">
+              <BookOpen className="w-5 h-5 text-purple-500" />
+              <h2 className="text-sm font-semibold uppercase tracking-wider text-sidebar-foreground/70">
+                Courses
+              </h2>
+            </div>
           </div>
-        </div>
 
-        <nav className="sidebar-nav">
-          <Link
-            href="/courses/web-development-guide"
-            className="sidebar-link"
-          >
-            <BookOpen className="w-4 h-4 opacity-80" />
-            <span>Web Development Complete Guide</span>
-          </Link>
-        </nav>
+          <nav className="sidebar-nav">
+            <Link
+              href="/courses/web-development-guide"
+              className="sidebar-link"
+            >
+              <BookOpen className="w-4 h-4 opacity-80" />
+              <span>Web Development Complete Guide</span>
+            </Link>
+          </nav>
+        </div>
 
         <footer className="sidebar-footer">
           <p className="text-xs text-center text-sidebar-foreground/60">
