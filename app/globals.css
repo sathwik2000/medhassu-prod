@@ -179,3 +179,26 @@ p {
     padding: 1.25rem;
   }
 }
+
+/* ==============================
+   SEARCH DROPDOWN FIXES
+   ============================== */
+.z-[60] {
+  z-index: 60;
+}
+
+.search-dropdown {
+  animation: fadeIn 0.15s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
