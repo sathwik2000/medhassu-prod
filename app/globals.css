@@ -1,265 +1,151 @@
 @import "tailwindcss";
 
-/* ============================================
-   THEME CONFIGURATION - Tailwind CSS v4
-   ============================================ */
-@theme {
-  /* Light Mode Colors */
-  --color-background: hsl(0 0% 100%);
-  --color-foreground: hsl(222.2 47.4% 11.2%);
-  --color-card: hsl(0 0% 100%);
-  --color-card-foreground: hsl(222.2 47.4% 11.2%);
-  --color-popover: hsl(0 0% 100%);
-  --color-popover-foreground: hsl(222.2 47.4% 11.2%);
-  --color-primary: hsl(222.2 47.4% 11.2%);
-  --color-primary-foreground: hsl(210 40% 98%);
-  --color-secondary: hsl(210 40% 96.1%);
-  --color-secondary-foreground: hsl(222.2 47.4% 11.2%);
-  --color-muted: hsl(210 40% 96.1%);
-  --color-muted-foreground: hsl(215.4 16.3% 46.9%);
-  --color-accent: hsl(210 40% 96.1%);
-  --color-accent-foreground: hsl(222.2 47.4% 11.2%);
-  --color-destructive: hsl(0 84.2% 60.2%);
-  --color-destructive-foreground: hsl(210 40% 98%);
-  --color-border: hsl(214.3 31.8% 91.4%);
-  --color-input: hsl(214.3 31.8% 91.4%);
-  --color-ring: hsl(215 20.2% 65.1%);
-  
-  /* Sidebar Colors - Light Mode */
-  --color-sidebar: hsl(0 0% 98%);
-  --color-sidebar-foreground: hsl(222.2 47.4% 11.2%);
-  --color-sidebar-accent: hsl(210 40% 96.1%);
-  --color-sidebar-accent-foreground: hsl(222.2 47.4% 11.2%);
-  --color-sidebar-border: hsl(214.3 31.8% 91.4%);
-  --color-sidebar-ring: hsl(217.2 32.6% 17.5%);
-  
-  /* Radius */
-  --radius: 0.5rem;
+@layer theme {
+  :root {
+    --color-background: 0 0% 100%;
+    --color-foreground: 222.2 47.4% 11.2%;
+    --color-card: 0 0% 100%;
+    --color-card-foreground: 222.2 47.4% 11.2%;
+    --color-primary: 222.2 47.4% 11.2%;
+    --color-primary-foreground: 210 40% 98%;
+    --color-secondary: 210 40% 96.1%;
+    --color-secondary-foreground: 222.2 47.4% 11.2%;
+    --color-muted: 210 40% 96.1%;
+    --color-muted-foreground: 215.4 16.3% 46.9%;
+    --color-accent: 210 40% 96.1%;
+    --color-accent-foreground: 222.2 47.4% 11.2%;
+    --color-border: 214.3 31.8% 91.4%;
+    --color-input: 214.3 31.8% 91.4%;
+    --color-sidebar: 0 0% 98%;
+    --color-sidebar-foreground: 222.2 47.4% 11.2%;
+    --color-sidebar-accent: 210 40% 96.1%;
+    --color-sidebar-border: 214.3 31.8% 91.4%;
+  }
+
+  .dark {
+    --color-background: 222.2 47.4% 11.2%;
+    --color-foreground: 210 40% 98%;
+    --color-card: 222.2 47.4% 11.2%;
+    --color-card-foreground: 210 40% 98%;
+    --color-primary: 210 40% 98%;
+    --color-primary-foreground: 222.2 47.4% 11.2%;
+    --color-secondary: 217.2 32.6% 17.5%;
+    --color-secondary-foreground: 210 40% 98%;
+    --color-muted: 217.2 32.6% 17.5%;
+    --color-muted-foreground: 215 20.2% 65.1%;
+    --color-accent: 217.2 32.6% 17.5%;
+    --color-accent-foreground: 210 40% 98%;
+    --color-border: 217.2 32.6% 17.5%;
+    --color-input: 217.2 32.6% 17.5%;
+    --color-sidebar: 222.2 47.4% 11.2%;
+    --color-sidebar-foreground: 210 40% 98%;
+    --color-sidebar-accent: 217.2 32.6% 17.5%;
+    --color-sidebar-border: 217.2 32.6% 17.5%;
+  }
 }
 
-@theme dark {
-  /* Dark Mode Colors */
-  --color-background: hsl(222.2 47.4% 11.2%);
-  --color-foreground: hsl(210 40% 98%);
-  --color-card: hsl(222.2 47.4% 11.2%);
-  --color-card-foreground: hsl(210 40% 98%);
-  --color-popover: hsl(222.2 47.4% 11.2%);
-  --color-popover-foreground: hsl(210 40% 98%);
-  --color-primary: hsl(210 40% 98%);
-  --color-primary-foreground: hsl(222.2 47.4% 11.2%);
-  --color-secondary: hsl(217.2 32.6% 17.5%);
-  --color-secondary-foreground: hsl(210 40% 98%);
-  --color-muted: hsl(217.2 32.6% 17.5%);
-  --color-muted-foreground: hsl(215 20.2% 65.1%);
-  --color-accent: hsl(217.2 32.6% 17.5%);
-  --color-accent-foreground: hsl(210 40% 98%);
-  --color-destructive: hsl(0 62.8% 30.6%);
-  --color-destructive-foreground: hsl(210 40% 98%);
-  --color-border: hsl(217.2 32.6% 17.5%);
-  --color-input: hsl(217.2 32.6% 17.5%);
-  --color-ring: hsl(212.7 26.8% 83.9%);
-  
-  /* Sidebar Colors - Dark Mode */
-  --color-sidebar: hsl(222.2 47.4% 11.2%);
-  --color-sidebar-foreground: hsl(210 40% 98%);
-  --color-sidebar-accent: hsl(217.2 32.6% 17.5%);
-  --color-sidebar-accent-foreground: hsl(210 40% 98%);
-  --color-sidebar-border: hsl(217.2 32.6% 17.5%);
-  --color-sidebar-ring: hsl(210 40% 96%);
-}
-
-/* ============================================
-   BASE STYLES
-   ============================================ */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-html {
-  scroll-behavior: smooth;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
 body {
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
   background-color: hsl(var(--color-background));
   color: hsl(var(--color-foreground));
   min-height: 100vh;
-  line-height: 1.6;
 }
 
-/* ============================================
-   TYPOGRAPHY
-   ============================================ */
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 700;
-  line-height: 1.2;
-  color: hsl(var(--color-foreground));
-  letter-spacing: -0.02em;
-}
-
-h1 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 1.5rem; }
-h2 { font-size: clamp(1.5rem, 4vw, 2rem); margin: 2.5rem 0 1rem; }
-h3 { font-size: clamp(1.25rem, 3vw, 1.5rem); margin: 2rem 0 0.75rem; }
-
-p { line-height: 1.7; margin-bottom: 1rem; color: hsl(var(--color-foreground) / 0.9); }
-
-a {
-  color: hsl(var(--color-primary));
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-a:hover { color: hsl(var(--color-primary) / 0.8); }
-
-/* ============================================
-   LAYOUT COMPONENTS
-   ============================================ */
 header.navbar {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  height: 4rem;
+  height: 64px;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid hsl(var(--color-border));
   background-color: hsl(var(--color-background) / 0.95);
   backdrop-filter: blur(12px);
-  z-index: 70;
+  border-bottom: 1px solid hsl(var(--color-border));
+  z-index: 50;
+  padding: 0 24px;
 }
 
-/* Sidebar */
-.app-sidebar {
+aside[data-slot="sidebar"] {
   position: fixed;
-  top: 4rem;
   left: 0;
-  width: 16rem;
-  height: calc(100vh - 4rem);
+  top: 64px;
+  width: 256px;
+  height: calc(100vh - 64px);
   background-color: hsl(var(--color-sidebar));
-  color: hsl(var(--color-sidebar-foreground));
   border-right: 1px solid hsl(var(--color-sidebar-border));
   overflow-y: auto;
-  z-index: 60;
+  z-index: 40;
 }
 
-.app-sidebar-content {
-  padding: 0.75rem;
-}
-
-/* Main content area */
 main {
-  margin-left: 16rem;
-  padding-top: 4rem;
-  min-height: 100vh;
-  background-color: hsl(var(--color-background));
-  width: auto !important;
-  min-width: 0;
+  margin-left: 256px;
+  margin-top: 64px;
+  min-height: calc(100vh - 64px);
+  padding: 24px;
 }
 
-/* Content wrapper */
-.content-area {
-  min-height: calc(100vh - 4rem);
-  padding: 1.5rem;
-  background-color: hsl(var(--color-background));
-  transition: background-color 0.3s ease;
-  width: 100%;
-  overflow-x: hidden;
-}
-
-.content-card {
-  max-width: 56rem;
-  margin: 0 auto;
-  background-color: hsl(var(--color-card));
-  color: hsl(var(--color-card-foreground));
-  border-radius: 0.75rem;
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  padding: 2rem;
-  border: 1px solid hsl(var(--color-border));
-}
-
-/* ============================================
-   GRADIENT TEXT
-   ============================================ */
-.gradient-text {
-  background: linear-gradient(
-    to right,
-    hsl(270 70% 60%),
-    hsl(217 90% 60%),
-    hsl(189 90% 60%)
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.dark .gradient-text {
-  background: linear-gradient(
-    to right,
-    hsl(270 70% 70%),
-    hsl(217 90% 70%),
-    hsl(189 90% 70%)
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* ============================================
-   SCROLLBAR
-   ============================================ */
-::-webkit-scrollbar { width: 8px; height: 8px; }
-::-webkit-scrollbar-thumb {
-  background-color: hsl(var(--color-muted-foreground) / 0.2);
-  border-radius: 9999px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background-color: hsl(var(--color-muted-foreground) / 0.4);
-}
-
-/* ============================================
-   SMALL FIXES FOR LAYOUT GAPS
-   ============================================ */
-main,
-.content-area,
-.content-card {
-  min-width: 0;
-}
-
-main::before {
-  content: "";
-  position: absolute;
-  left: calc(16rem - 1px);
-  top: 4rem;
-  bottom: 0;
-  width: 1px;
-  background: hsl(var(--color-sidebar-border));
-  pointer-events: none;
-  z-index: 45;
-}
-
-html, body {
-  height: 100%;
-  background-color: hsl(var(--color-background));
-}
-
-/* ============================================
-   RESPONSIVE
-   ============================================ */
 @media (max-width: 768px) {
-  .app-sidebar { transform: translateX(-100%); transition: transform 0.3s ease; }
-  .app-sidebar.open { transform: translateX(0); }
-  main { margin-left: 0; width: 100%; }
-  .content-area { padding: 1rem; }
-  .content-card { padding: 1.5rem; }
+  aside[data-slot="sidebar"] {
+    transform: translateX(-100%);
+    transition: transform 0.3s;
+  }
+  main {
+    margin-left: 0;
+  }
 }
 
-/* ============================================
-   PRINT STYLES
-   ============================================ */
-@media print {
-  .navbar, .app-sidebar { display: none !important; }
-  main { margin-left: 0 !important; width: 100% !important; }
-  body { background: white !important; color: black !important; }
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+h2 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+p {
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+code {
+  font-family: 'Monaco', 'Courier New', monospace;
+  background-color: hsl(var(--color-muted));
+  padding: 0.2em 0.4em;
+  border-radius: 0.25rem;
+  font-size: 0.875em;
+}
+
+pre {
+  background-color: #1e293b;
+  color: #e2e8f0;
+  padding: 1.25rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+pre code {
+  background-color: transparent;
+  padding: 0;
+}
+
+a {
+  color: hsl(217 91% 60%);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }
