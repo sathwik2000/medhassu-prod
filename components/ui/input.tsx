@@ -1,19 +1,9 @@
-// components/ui/input.tsx
-import * as React from "react";
+﻿import * as React from "react";
 import { cn } from "@/lib/utils";
 
 function Input({ className, type = "text", ...props }: React.ComponentProps<"input">) {
   return (
-    <input
-      type={type}
-      data-slot="input"
-      className={cn(
-        "placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none md:text-sm",
-        "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
-        className
-      )}
-      {...props}
-    />
+    <input type={type} data-slot="input" className={cn("h-10 w-full min-w-0 rounded-lg px-4 py-2 text-base", "bg-[hsl(var(--color-card))] text-[hsl(var(--color-card-foreground))]", "border border-[hsl(var(--color-input))]", "placeholder:text-[hsl(var(--color-muted-foreground))]", "shadow-sm transition-all outline-none", "focus-visible:border-[hsl(var(--color-ring))]", "focus-visible:ring-3 focus-visible:ring-[hsl(var(--color-ring)/0.2)]", "hover:border-[hsl(var(--color-ring)/0.5)]", "disabled:cursor-not-allowed disabled:opacity-50", className)} {...props} />
   );
 }
 
