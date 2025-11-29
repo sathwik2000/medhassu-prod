@@ -54,10 +54,24 @@ export function AppSidebar() {
   return (
     <Sidebar className="border-r border-sidebar-border bg-sidebar">
       <SidebarHeader className="border-b border-sidebar-border px-6 py-4">
-        <NavLink to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-          <BookOpen className="h-6 w-6 text-sidebar-primary" />
-          <span className="text-xl font-bold text-sidebar-foreground">Medhassu</span>
-        </NavLink>
+        <div className="flex items-center justify-between">
+          <NavLink to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+            <BookOpen className="h-6 w-6 text-sidebar-primary" />
+            <span className="text-xl font-bold text-sidebar-foreground">Medhassu</span>
+          </NavLink>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={toggleTheme}
+            className="h-8 w-8"
+          >
+            {theme === "dark" ? (
+              <Moon className="h-4 w-4" />
+            ) : (
+              <Sun className="h-4 w-4" />
+            )}
+          </Button>
+        </div>
       </SidebarHeader>
       
       <div className="px-4 py-4 border-b border-sidebar-border">
@@ -146,20 +160,8 @@ export function AppSidebar() {
       </SidebarContent>
 
       <SidebarFooter className="mt-auto border-t border-sidebar-border p-4">
-        <div className="flex items-center justify-between">
+        <div className="text-center">
           <span className="text-xs text-muted-foreground">made with ❤️ by Medhassu</span>
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={toggleTheme}
-            className="h-8 w-8"
-          >
-            {theme === "dark" ? (
-              <Moon className="h-4 w-4" />
-            ) : (
-              <Sun className="h-4 w-4" />
-            )}
-          </Button>
         </div>
       </SidebarFooter>
     </Sidebar>

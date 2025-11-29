@@ -24,8 +24,8 @@ const App = () => (
             <main className="flex-1 overflow-auto">
               <Routes>
                 <Route path="/" element={<Index />} />
-                <Route path="/series/:seriesId" element={<Series />} />
                 <Route path="/course/:courseId" element={<Course />} />
+                <Route path="/series/:seriesId" element={<Series />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>
