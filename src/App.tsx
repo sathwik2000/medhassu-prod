@@ -7,6 +7,7 @@ import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
 import Index from "./pages/Index";
 import Course from "./pages/Course";
+import Series from "./pages/Series";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -23,6 +24,7 @@ const App = () => (
             <main className="flex-1 overflow-auto">
               <Routes>
                 <Route path="/" element={<Index />} />
+                <Route path="/series/:seriesId" element={<Series />} />
                 <Route path="/course/:courseId" element={<Course />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />

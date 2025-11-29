@@ -1,4 +1,4 @@
-import { BookOpen, Moon, Sun, Code, Database, Palette } from "lucide-react";
+import { BookOpen, Moon, Sun, Code, Database, Palette, Home, Book } from "lucide-react";
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import {
@@ -10,15 +10,12 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarHeader,
+  SidebarFooter,
 } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
 import { GlobalSearch } from "@/components/GlobalSearch";
-
-const courses = [
-  { id: "web-dev", title: "Web Development Complete Guide", icon: Code },
-  { id: "design", title: "UI/UX Design Fundamentals", icon: Palette },
-  { id: "backend", title: "Backend Development", icon: Database },
-];
+import { series, courses } from "@/data/seriesData";
 
 export function AppSidebar() {
   const [theme, setTheme] = useState<"light" | "dark">("dark");
@@ -45,35 +42,71 @@ export function AppSidebar() {
     }
   };
 
+  const getCourseIcon = (courseId: string) => {
+    const iconMap: Record<string, any> = {
+      "web-dev": Code,
+      "design": Palette,
+      "backend": Database,
+    };
+    return iconMap[courseId] || Code;
+  };
+
   return (
     <Sidebar className="border-r border-sidebar-border bg-sidebar">
-      <NavLink to="/" className="flex h-16 items-center gap-2 border-b border-sidebar-border px-6 hover:bg-sidebar-accent/50 transition-colors">
-        <BookOpen className="h-8 w-8 text-sidebar-primary" />
-        <span className="text-2xl font-bold text-sidebar-foreground">Medhassu</span>
-      </NavLink>
+      <SidebarHeader className="border-b border-sidebar-border px-6 py-4">
+        <NavLink to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+          <BookOpen className="h-6 w-6 text-sidebar-primary" />
+          <span className="text-xl font-bold text-sidebar-foreground">Medhassu</span>
+        </NavLink>
+      </SidebarHeader>
       
-      <div className="p-4 border-b border-sidebar-border">
+      <div className="px-4 py-4 border-b border-sidebar-border">
         <GlobalSearch />
       </div>
       
-      <SidebarContent>
+      <SidebarContent className="px-4">
+        {/* Navigation */}
         <SidebarGroup>
-          <SidebarGroupLabel className="text-sm uppercase tracking-wider text-muted-foreground">
-            Courses
+          <SidebarGroupLabel className="text-xs uppercase tracking-wider text-muted-foreground px-2 py-2">
+            Navigation
           </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {courses.map((course) => (
-                <SidebarMenuItem key={course.id}>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <NavLink 
+                    to="/"
+                    className={({ isActive }) =>
+                      isActive ? "bg-sidebar-accent text-sidebar-primary font-medium" : ""
+                    }
+                  >
+                    <Home className="h-4 w-4" />
+                    <span>Home</span>
+                  </NavLink>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+
+        {/* Learning Series */}
+        <SidebarGroup>
+          <SidebarGroupLabel className="text-xs uppercase tracking-wider text-muted-foreground px-2 py-2">
+            Learning Series
+          </SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {series.map((item) => (
+                <SidebarMenuItem key={item.id}>
                   <SidebarMenuButton asChild>
                     <NavLink 
-                      to={`/course/${course.id}`}
+                      to={`/series/${item.id}`}
                       className={({ isActive }) =>
                         isActive ? "bg-sidebar-accent text-sidebar-primary font-medium" : ""
                       }
                     >
-                      <course.icon className="h-4 w-4" />
-                      <span>{course.title}</span>
+                      <Book className="h-4 w-4 flex-shrink-0" />
+                      <span className="truncate">{item.title}</span>
                     </NavLink>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
@@ -81,9 +114,38 @@ export function AppSidebar() {
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
+
+        {/* All Courses */}
+        <SidebarGroup>
+          <SidebarGroupLabel className="text-xs uppercase tracking-wider text-muted-foreground px-2 py-2">
+            All Courses
+          </SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {courses.map((course) => {
+                const Icon = getCourseIcon(course.id);
+                return (
+                  <SidebarMenuItem key={course.id}>
+                    <SidebarMenuButton asChild>
+                      <NavLink 
+                        to={`/course/${course.id}`}
+                        className={({ isActive }) =>
+                          isActive ? "bg-sidebar-accent text-sidebar-primary font-medium" : ""
+                        }
+                      >
+                        <Icon className="h-4 w-4 flex-shrink-0" />
+                        <span className="truncate">{course.title}</span>
+                      </NavLink>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                );
+              })}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
       </SidebarContent>
 
-      <div className="mt-auto border-t border-sidebar-border p-4">
+      <SidebarFooter className="mt-auto border-t border-sidebar-border p-4">
         <div className="flex items-center justify-between">
           <span className="text-xs text-muted-foreground">made with ❤️ by Medhassu</span>
           <Button
@@ -99,7 +161,7 @@ export function AppSidebar() {
             )}
           </Button>
         </div>
-      </div>
+      </SidebarFooter>
     </Sidebar>
   );
 }

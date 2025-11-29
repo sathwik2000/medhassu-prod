@@ -10,34 +10,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-
-const allCourses = [
-  {
-    id: "web-dev",
-    title: "Web Development Complete Guide",
-    sections: [
-      { title: "HTML Fundamentals", content: "HTML (HyperText Markup Language) is the standard markup language for creating web pages." },
-      { title: "CSS Fundamentals", content: "Learn CSS styling with this comprehensive video" },
-      { title: "JavaScript Basics", content: "JavaScript is the programming language of the web." }
-    ]
-  },
-  {
-    id: "design",
-    title: "UI/UX Design Fundamentals",
-    sections: [
-      { title: "Design Principles", content: "Understanding the core principles of design: balance, contrast, emphasis" },
-      { title: "User Experience Basics", content: "UX design focuses on creating meaningful and relevant experiences" }
-    ]
-  },
-  {
-    id: "backend",
-    title: "Backend Development",
-    sections: [
-      { title: "Server-Side Programming", content: "Learn how to build robust server-side applications" },
-      { title: "Database Management", content: "Understanding databases and how to work with them effectively" }
-    ]
-  }
-];
+import { courses } from "@/data/seriesData";
 
 interface SearchResult {
   courseId: string;
@@ -52,20 +25,17 @@ export function GlobalSearch() {
   const navigate = useNavigate();
 
   const searchResults: SearchResult[] = query.length > 0 
-    ? allCourses.flatMap(course => 
-        course.sections
-          .filter(section => 
-            section.title.toLowerCase().includes(query.toLowerCase()) ||
-            section.content.toLowerCase().includes(query.toLowerCase()) ||
-            course.title.toLowerCase().includes(query.toLowerCase())
-          )
-          .map(section => ({
-            courseId: course.id,
-            courseTitle: course.title,
-            sectionTitle: section.title,
-            content: section.content
-          }))
-      )
+    ? courses
+        .filter(course => 
+          course.title.toLowerCase().includes(query.toLowerCase()) ||
+          course.description.toLowerCase().includes(query.toLowerCase())
+        )
+        .map(course => ({
+          courseId: course.id,
+          courseTitle: course.title,
+          sectionTitle: course.title,
+          content: course.description
+        }))
     : [];
 
   const handleResultClick = (courseId: string) => {
@@ -78,10 +48,10 @@ export function GlobalSearch() {
     <>
       <Button
         variant="outline"
-        className="w-full max-w-sm gap-2"
+        className="w-full justify-start text-left font-normal"
         onClick={() => setIsOpen(true)}
       >
-        <Search className="h-4 w-4" />
+        <Search className="h-4 w-4 mr-2" />
         <span className="text-muted-foreground">Search across all courses...</span>
       </Button>
 
