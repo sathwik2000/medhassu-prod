@@ -1,126 +1,136 @@
-﻿import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { BookOpen, Code, Database, Palette, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { ArrowRight, BookOpen, Sparkles, GraduationCap } from "lucide-react";
+import { series, courses } from "@/data/seriesData";
+import * as Icons from "lucide-react";
 
-const courses = [
-  {
-    id: "web-dev",
-    title: "Web Development Complete Guide",
-    description: "Master HTML, CSS, JavaScript and modern frameworks",
-    icon: Code,
-    color: "from-blue-500 to-cyan-500"
-  },
-  {
-    id: "design",
-    title: "UI/UX Design Fundamentals",
-    description: "Learn design principles, tools, and best practices",
-    icon: Palette,
-    color: "from-purple-500 to-pink-500"
-  },
-  {
-    id: "backend",
-    title: "Backend Development",
-    description: "Build scalable server-side applications",
-    icon: Database,
-    color: "from-green-500 to-emerald-500"
-  }
-];
-
-const Index = () => {
+export default function Index() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 -left-20 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-pulse delay-1000" />
-      </div>
-
-      <div className="relative max-w-7xl mx-auto px-4 py-20 space-y-20">
-        <div className="text-center space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-1000">
-          <div className="flex items-center justify-center gap-4 mb-6">
-            <div className="relative">
-              <div className="absolute inset-0 bg-primary/20 rounded-full blur-xl animate-pulse" />
-              <BookOpen className="relative h-16 w-16 text-primary" />
-            </div>
-            <h1 className="text-6xl md:text-7xl font-bold bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent">
+    <div className="min-h-screen bg-background">
+      {/* Hero Section */}
+      <div className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-accent/20 to-secondary/20" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(138,92,246,0.15),transparent_50%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(59,130,246,0.15),transparent_50%)]"></div>
+        <div className="relative max-w-6xl mx-auto px-4 py-24 md:py-40">
+          <div className="text-center space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-1000">
+            <Badge variant="secondary" className="mb-4 text-sm px-5 py-2 hover:scale-105 transition-transform cursor-default shadow-md">
+              <Sparkles className="w-4 h-4 mr-2 animate-pulse" />
+              Learn from experts
+            </Badge>
+            <h1 className="text-6xl md:text-8xl font-bold bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent leading-tight">
               Medhassu
             </h1>
-          </div>
-          <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Your comprehensive learning platform for mastering development and design
-          </p>
-          <div className="flex items-center justify-center gap-4 pt-4">
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-              <span>Live courses available</span>
-            </div>
-            <div className="w-px h-4 bg-border" />
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <span>Updated weekly</span>
+            <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              Your comprehensive learning platform for mastering development and design
+            </p>
+            <div className="flex items-center justify-center gap-6 text-sm text-muted-foreground">
+              <span className="flex items-center gap-2 hover:text-foreground transition-colors">
+                <span className="w-2 h-2 bg-accent rounded-full animate-pulse shadow-lg shadow-accent/50"></span>
+                Live courses available
+              </span>
+              <span>•</span>
+              <span className="hover:text-foreground transition-colors">Updated weekly</span>
             </div>
           </div>
         </div>
+      </div>
 
-        <div className="space-y-10">
-          <div className="text-center space-y-3">
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground">
-              Explore Our Courses
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              Choose your path and start learning today
-            </p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            {courses.map((course, index) => (
-              <Card
-                key={course.id}
-                className="relative p-8 hover:shadow-2xl transition-all duration-500 border-border bg-card/50 backdrop-blur-sm group overflow-hidden animate-in fade-in slide-in-from-bottom-8"
-                style={{ animationDelay: `${index * 150}ms` }}
+      {/* Learning Series Section */}
+      <div className="max-w-6xl mx-auto px-4 py-20">
+        <div className="text-center space-y-5 mb-16 animate-in fade-in slide-in-from-bottom-4 duration-700">
+          <h2 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+            Learning Series
+          </h2>
+          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            Follow curated learning paths designed to take you from beginner to expert
+          </p>
+        </div>
+        
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 mb-20">
+          {series.map((item, index) => (
+            <Card 
+              key={item.id} 
+              className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 border-2 hover:border-primary/50 overflow-hidden bg-card/50 backdrop-blur-sm animate-in fade-in slide-in-from-bottom-8 duration-700 flex flex-col h-full"
+              style={{ animationDelay: `${index * 100}ms` }}
+            >
+              <div className={`h-2 bg-gradient-to-r ${item.gradient} group-hover:h-3 transition-all duration-300`} />
+              <CardHeader className="space-y-5 p-6 flex-grow">
+                <div className={`p-4 rounded-2xl bg-gradient-to-br ${item.gradient} w-fit group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                  <BookOpen className="w-8 h-8 text-white" />
+                </div>
+                <CardTitle className="text-2xl font-bold group-hover:text-primary transition-colors leading-tight line-clamp-2">
+                  {item.title}
+                </CardTitle>
+                <CardDescription className="text-base leading-relaxed line-clamp-3 min-h-[4.5rem]">
+                  {item.description}
+                </CardDescription>
+                <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
+                  <GraduationCap className="h-5 w-5 text-primary" />
+                  <span>{item.courses.length} courses</span>
+                </div>
+              </CardHeader>
+              <CardContent className="p-6 pt-0">
+                <Link to={`/series/${item.id}`}>
+                  <Button className="w-full group/btn group-hover:scale-105 transition-all duration-300 shadow-md hover:shadow-xl" size="lg">
+                    View Series
+                    <ArrowRight className="ml-2 h-5 w-5 group-hover/btn:translate-x-1 transition-transform" />
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
+        {/* All Courses Section */}
+        <div className="text-center space-y-5 mb-16 animate-in fade-in slide-in-from-bottom-4 duration-700">
+          <h2 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-secondary to-primary bg-clip-text text-transparent">
+            All Courses
+          </h2>
+          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            Or choose individual courses to learn at your own pace
+          </p>
+        </div>
+
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {courses.map((course, index) => {
+            const IconComponent = Icons[course.icon as keyof typeof Icons] as any;
+            
+            return (
+              <Card 
+                key={course.id} 
+                className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 border-2 hover:border-primary/50 overflow-hidden bg-card/50 backdrop-blur-sm animate-in fade-in slide-in-from-bottom-8 duration-700 flex flex-col h-full"
+                style={{ animationDelay: `${index * 100}ms` }}
               >
-                <div className={`absolute inset-0 bg-gradient-to-br ${course.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
-                <div className="relative mb-6">
-                  <div className={`absolute inset-0 bg-gradient-to-br ${course.color} rounded-2xl blur-xl opacity-50 group-hover:opacity-100 transition-opacity duration-500`} />
-                  <div className={`relative w-16 h-16 rounded-2xl bg-gradient-to-br ${course.color} flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg`}>
-                    <course.icon className="h-8 w-8 text-white" />
+                <div className="h-52 bg-gradient-to-br from-primary/20 via-accent/20 to-secondary/20 flex items-center justify-center relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary via-accent to-secondary opacity-20 group-hover:opacity-40 transition-all duration-500" />
+                  <div className="relative p-7 bg-gradient-to-br from-primary via-accent to-secondary rounded-3xl shadow-2xl group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
+                    {IconComponent && <IconComponent className="w-14 h-14 text-white" />}
                   </div>
                 </div>
-                <div className="relative space-y-4">
-                  <h3 className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
+                <CardHeader className="p-6 flex-grow">
+                  <CardTitle className="text-2xl font-bold group-hover:text-primary transition-colors leading-tight line-clamp-2 min-h-[3.5rem]">
                     {course.title}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
+                  </CardTitle>
+                  <CardDescription className="text-base leading-relaxed mt-3 line-clamp-2 min-h-[3rem]">
                     {course.description}
-                  </p>
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="p-6 pt-0">
                   <Link to={`/course/${course.id}`}>
-                    <Button className="w-full group-hover:shadow-lg group-hover:shadow-primary/20 transition-all duration-300 mt-2">
-                      <span className="flex items-center justify-center gap-2">
-                        Start Learning
-                        <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
-                      </span>
+                    <Button className="w-full group/btn group-hover:scale-105 transition-all duration-300 shadow-md hover:shadow-xl" variant="default" size="lg">
+                      Start Learning
+                      <ArrowRight className="ml-2 h-5 w-5 group-hover/btn:translate-x-1 transition-transform" />
                     </Button>
                   </Link>
-                </div>
-                <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-primary/10 to-transparent rounded-bl-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                </CardContent>
               </Card>
-            ))}
-          </div>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-6 pt-10 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-500">
-          {[
-            { title: "Interactive Learning", desc: "Hands-on projects and exercises" },
-            { title: "Expert Content", desc: "Curated by industry professionals" },
-            { title: "Self-Paced", desc: "Learn at your own speed" }
-          ].map((feature, i) => (
-            <div key={i} className="text-center space-y-2 p-6 rounded-xl bg-card/30 backdrop-blur-sm border border-border/50 hover:border-primary/50 transition-all duration-300">
-              <h3 className="font-semibold text-foreground">{feature.title}</h3>
-              <p className="text-sm text-muted-foreground">{feature.desc}</p>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </div>
   );
-};
-
-export default Index;
+}
