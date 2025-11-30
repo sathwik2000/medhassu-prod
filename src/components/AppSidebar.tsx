@@ -1,4 +1,4 @@
-import { BookOpen, Moon, Sun, Code, Database, Palette, Home, Book } from "lucide-react";
+import { Moon, Sun, Code, Database, Palette, Home, Book } from "lucide-react";
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import {
@@ -53,22 +53,23 @@ export function AppSidebar() {
 
   return (
     <Sidebar className="border-r border-sidebar-border bg-sidebar">
-      <SidebarHeader className="border-b border-sidebar-border px-6 py-4">
+      <SidebarHeader className="border-b border-sidebar-border px-6 py-5">
         <div className="flex items-center justify-between">
-          <NavLink to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-            <BookOpen className="h-6 w-6 text-sidebar-primary" />
-            <span className="text-xl font-bold text-sidebar-foreground">Medhassu</span>
+          <NavLink to="/" className="hover:opacity-80 transition-opacity">
+            <span className="text-2xl font-bold bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
+              Medhassu
+            </span>
           </NavLink>
           <Button
             variant="ghost"
             size="icon"
             onClick={toggleTheme}
-            className="h-8 w-8"
+            className="h-9 w-9 rounded-lg"
           >
             {theme === "dark" ? (
-              <Moon className="h-4 w-4" />
+              <Moon className="h-5 w-5" />
             ) : (
-              <Sun className="h-4 w-4" />
+              <Sun className="h-5 w-5" />
             )}
           </Button>
         </div>
@@ -81,7 +82,7 @@ export function AppSidebar() {
       <SidebarContent className="px-4">
         {/* Navigation */}
         <SidebarGroup>
-          <SidebarGroupLabel className="text-xs uppercase tracking-wider text-muted-foreground px-2 py-2">
+          <SidebarGroupLabel className="text-xs uppercase tracking-wider text-muted-foreground px-2 py-3 font-semibold">
             Navigation
           </SidebarGroupLabel>
           <SidebarGroupContent>
@@ -105,7 +106,7 @@ export function AppSidebar() {
 
         {/* Learning Series */}
         <SidebarGroup>
-          <SidebarGroupLabel className="text-xs uppercase tracking-wider text-muted-foreground px-2 py-2">
+          <SidebarGroupLabel className="text-xs uppercase tracking-wider text-muted-foreground px-2 py-3 font-semibold">
             Learning Series
           </SidebarGroupLabel>
           <SidebarGroupContent>
@@ -131,7 +132,7 @@ export function AppSidebar() {
 
         {/* All Courses */}
         <SidebarGroup>
-          <SidebarGroupLabel className="text-xs uppercase tracking-wider text-muted-foreground px-2 py-2">
+          <SidebarGroupLabel className="text-xs uppercase tracking-wider text-muted-foreground px-2 py-3 font-semibold">
             All Courses
           </SidebarGroupLabel>
           <SidebarGroupContent>
