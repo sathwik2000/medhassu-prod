@@ -5,90 +5,82 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 222 47% 11%;
+    --foreground: 224 71% 4%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card-foreground: 224 71% 4%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    --popover-foreground: 224 71% 4%;
 
-    --primary: 262 83% 58%;
+    --primary: 262 90% 60%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 280 80% 55%;
+    --secondary: 280 85% 58%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 16% 47%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 46%;
 
-    --accent: 199 89% 48%;
+    --accent: 199 95% 50%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 262 83% 58%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 262 90% 60%;
 
     --radius: 0.75rem;
 
     --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 222 47% 11%;
-    --sidebar-primary: 262 83% 58%;
+    --sidebar-foreground: 224 71% 4%;
+    --sidebar-primary: 262 90% 60%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 210 40% 96%;
-    --sidebar-accent-foreground: 222 47% 11%;
-    --sidebar-border: 214 32% 91%;
-    --sidebar-ring: 262 83% 58%;
-
-    --gradient-primary: linear-gradient(135deg, hsl(262 83% 58%), hsl(199 89% 48%));
-    --gradient-secondary: linear-gradient(135deg, hsl(280 80% 55%), hsl(262 83% 58%));
-    --gradient-accent: linear-gradient(135deg, hsl(199 89% 48%), hsl(170 80% 55%));
+    --sidebar-accent: 220 14% 96%;
+    --sidebar-accent-foreground: 224 71% 4%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 262 90% 60%;
   }
 
   .dark {
-    --background: 222 47% 11%;
-    --foreground: 210 40% 98%;
+    --background: 224 71% 4%;
+    --foreground: 213 31% 91%;
 
-    --card: 222 47% 15%;
-    --card-foreground: 210 40% 98%;
+    --card: 224 65% 8%;
+    --card-foreground: 213 31% 91%;
 
-    --popover: 222 47% 15%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 224 65% 8%;
+    --popover-foreground: 213 31% 91%;
 
-    --primary: 262 83% 65%;
+    --primary: 263 90% 65%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 280 83% 58%;
+    --secondary: 280 85% 62%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 217 33% 17%;
+    --muted: 223 47% 11%;
     --muted-foreground: 215 20% 65%;
 
-    --accent: 199 89% 52%;
+    --accent: 199 95% 55%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 62% 50%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 217 33% 22%;
-    --input: 217 33% 22%;
-    --ring: 262 83% 65%;
+    --border: 224 50% 16%;
+    --input: 224 50% 16%;
+    --ring: 263 90% 65%;
     
-    --sidebar-background: 222 47% 11%;
-    --sidebar-foreground: 210 40% 98%;
-    --sidebar-primary: 262 83% 65%;
+    --sidebar-background: 224 71% 4%;
+    --sidebar-foreground: 213 31% 91%;
+    --sidebar-primary: 263 90% 65%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 217 33% 17%;
-    --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 217 33% 22%;
-    --sidebar-ring: 262 83% 65%;
-
-    --gradient-primary: linear-gradient(135deg, hsl(262 83% 65%), hsl(199 89% 52%));
-    --gradient-secondary: linear-gradient(135deg, hsl(280 83% 58%), hsl(262 83% 65%));
-    --gradient-accent: linear-gradient(135deg, hsl(199 89% 52%), hsl(170 80% 58%));
+    --sidebar-accent: 223 47% 11%;
+    --sidebar-accent-foreground: 213 31% 91%;
+    --sidebar-border: 224 50% 16%;
+    --sidebar-ring: 263 90% 65%;
   }
 }
 
@@ -98,7 +90,7 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
   
@@ -107,19 +99,27 @@
   }
   
   ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
   }
   
   ::-webkit-scrollbar-track {
-    @apply bg-muted;
+    @apply bg-background;
   }
   
   ::-webkit-scrollbar-thumb {
-    @apply bg-muted-foreground/30 rounded-full;
+    @apply bg-muted-foreground/20 rounded-full;
+    border: 3px solid transparent;
+    background-clip: content-box;
   }
   
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-muted-foreground/50;
+    @apply bg-muted-foreground/30;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
   }
 }

@@ -22,11 +22,11 @@ export default function Series() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="relative overflow-hidden">
+      <div className="relative overflow-hidden border-b border-border">
         <div className={`absolute inset-0 bg-gradient-to-br ${currentSeries.gradient} opacity-10`} />
-        <div className="relative max-w-6xl mx-auto px-4 py-16">
+        <div className="relative max-w-7xl mx-auto px-4 py-16">
           <div className="text-center space-y-4 mb-12">
-            <Badge variant="secondary" className="mb-4">
+            <Badge variant="secondary" className="mb-4 border">
               <BookOpen className="w-4 h-4 mr-2" />
               Learning Series
             </Badge>
@@ -37,7 +37,10 @@ export default function Series() {
               {currentSeries.description}
             </p>
             <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
-              <span>{seriesCourses.length} courses</span>
+              <span className="flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 bg-primary rounded-full"></span>
+                {seriesCourses.length} courses
+              </span>
               <span>•</span>
               <span>Comprehensive curriculum</span>
             </div>
@@ -50,10 +53,10 @@ export default function Series() {
               return (
                 <Card 
                   key={course.id}
-                  className="group hover:shadow-2xl transition-all duration-300 border-2 hover:border-primary/50 bg-card/50 backdrop-blur-sm overflow-hidden"
+                  className="group hover:shadow-2xl transition-all duration-300 border-2 hover:border-primary/30 bg-card backdrop-blur-sm overflow-hidden flex flex-col"
                 >
                   <div className={`h-2 bg-gradient-to-r ${currentSeries.gradient}`} />
-                  <CardHeader>
+                  <CardHeader className="flex-grow">
                     <div className="flex items-start justify-between mb-4">
                       <div className={`p-3 rounded-xl bg-gradient-to-br ${currentSeries.gradient} text-white shadow-lg`}>
                         {IconComponent && <IconComponent className="w-6 h-6" />}
@@ -62,16 +65,16 @@ export default function Series() {
                         Step {index + 1}
                       </Badge>
                     </div>
-                    <CardTitle className="text-xl group-hover:text-primary transition-colors">
+                    <CardTitle className="text-xl group-hover:text-primary transition-colors line-clamp-2 min-h-[3rem]">
                       {course.title}
                     </CardTitle>
-                    <CardDescription className="text-base">
+                    <CardDescription className="text-base line-clamp-3 min-h-[4.5rem]">
                       {course.description}
                     </CardDescription>
                   </CardHeader>
-                  <CardContent>
+                  <CardContent className="mt-auto">
                     <Link to={`/course/${course.id}`}>
-                      <Button className="w-full group/btn" variant="default">
+                      <Button className="w-full group/btn transition-all duration-300" variant="default">
                         Start Learning
                         <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
                       </Button>

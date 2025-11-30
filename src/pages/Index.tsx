@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Sparkles, GraduationCap } from "lucide-react";
+import { ArrowRight, Sparkles, GraduationCap, BookOpen } from "lucide-react";
 import { series, courses } from "@/data/seriesData";
 import * as Icons from "lucide-react";
 
@@ -53,7 +53,7 @@ export default function Index() {
           {series.map((item, index) => (
             <Card 
               key={item.id} 
-              className="group hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 border-2 hover:border-primary/30 overflow-hidden bg-card backdrop-blur-sm animate-in fade-in slide-in-from-bottom-8 duration-700 flex flex-col h-full"
+              className="group hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 border-2 hover:border-primary/30 overflow-hidden bg-card backdrop-blur-sm animate-in fade-in slide-in-from-bottom-8 duration-700 flex flex-col"
               style={{ animationDelay: `${index * 100}ms` }}
             >
               <div className={`h-2 bg-gradient-to-r ${item.gradient} group-hover:h-3 transition-all duration-300`} />
@@ -61,22 +61,22 @@ export default function Index() {
                 <div className={`p-3 rounded-xl bg-gradient-to-br ${item.gradient} w-fit group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
                   <GraduationCap className="w-7 h-7 text-white" />
                 </div>
-                <CardTitle className="text-2xl font-bold group-hover:text-primary transition-colors leading-tight">
-                  {item.title}
-                </CardTitle>
-                <CardDescription className="text-base leading-relaxed">
-                  {item.description}
-                </CardDescription>
+                <div className="space-y-3 flex-grow">
+                  <CardTitle className="text-2xl font-bold group-hover:text-primary transition-colors leading-tight line-clamp-2 min-h-[3.5rem]">
+                    {item.title}
+                  </CardTitle>
+                  <CardDescription className="text-base leading-relaxed line-clamp-3 min-h-[4.5rem]">
+                    {item.description}
+                  </CardDescription>
+                </div>
                 <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground pt-2">
-                  <span className="flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 bg-primary rounded-full"></span>
-                    {item.courses.length} courses
-                  </span>
+                  <BookOpen className="h-4 w-4 text-primary" />
+                  <span>{item.courses.length} courses</span>
                 </div>
               </CardHeader>
-              <CardContent className="p-6 pt-0">
+              <CardContent className="p-6 pt-0 mt-auto">
                 <Link to={`/series/${item.id}`}>
-                  <Button className="w-full group/btn group-hover:scale-105 transition-all duration-300 shadow-md hover:shadow-xl" size="lg">
+                  <Button className="w-full group/btn transition-all duration-300 shadow-md hover:shadow-xl" size="lg">
                     View Series
                     <ArrowRight className="ml-2 h-5 w-5 group-hover/btn:translate-x-1 transition-transform" />
                   </Button>
@@ -103,7 +103,7 @@ export default function Index() {
             return (
               <Card 
                 key={course.id} 
-                className="group hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 border-2 hover:border-primary/30 overflow-hidden bg-card backdrop-blur-sm animate-in fade-in slide-in-from-bottom-8 duration-700 flex flex-col h-full"
+                className="group hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 border-2 hover:border-primary/30 overflow-hidden bg-card backdrop-blur-sm animate-in fade-in slide-in-from-bottom-8 duration-700 flex flex-col"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 <div className="h-48 bg-gradient-to-br from-primary/10 via-accent/10 to-secondary/10 flex items-center justify-center relative overflow-hidden">
@@ -113,16 +113,16 @@ export default function Index() {
                   </div>
                 </div>
                 <CardHeader className="p-6 flex-grow">
-                  <CardTitle className="text-2xl font-bold group-hover:text-primary transition-colors leading-tight">
+                  <CardTitle className="text-2xl font-bold group-hover:text-primary transition-colors leading-tight line-clamp-2 min-h-[3.5rem]">
                     {course.title}
                   </CardTitle>
-                  <CardDescription className="text-base leading-relaxed mt-3">
+                  <CardDescription className="text-base leading-relaxed mt-3 line-clamp-3 min-h-[4.5rem]">
                     {course.description}
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="p-6 pt-0">
+                <CardContent className="p-6 pt-0 mt-auto">
                   <Link to={`/course/${course.id}`}>
-                    <Button className="w-full group/btn group-hover:scale-105 transition-all duration-300 shadow-md hover:shadow-xl" variant="default" size="lg">
+                    <Button className="w-full group/btn transition-all duration-300 shadow-md hover:shadow-xl" variant="default" size="lg">
                       Start Learning
                       <ArrowRight className="ml-2 h-5 w-5 group-hover/btn:translate-x-1 transition-transform" />
                     </Button>
